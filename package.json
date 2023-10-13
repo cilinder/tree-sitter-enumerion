@@ -1,0 +1,22 @@
+{
+  "name": "tree-sitter-enumerion",
+  "version": "1.0.0",
+  "description": "A tree sitter grammar for Enumerion",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jure Taslak",
+  "license": "ISC",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.enumerion",
+      "file-types": [
+        "enum"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+===============
+Check a numeral
+===============
+
+check 1
+
+---
+
+(source_file
+    (check
+        (numeral)))
+
+
+===========================
+Check a numeral of type Nat
+===========================
+
+check 1 : Nat
+
+---
+
+(source_file
+    (check
+        (numeral)
+        (colon)
+        (nat)))
+
+
+================
+Check a variable
+================
+
+check x
+
+---
+
+(source_file
+    (check
+        (identifier)))
+
+
+===========================
+Check a numeral of type Fin
+===========================
+
+check 4 : Fin 5
+
+---
+
+(source_file
+    (check
+        (numeral)
+        (colon)
+        (fin
+            (numeral))))
+
+
+=================
+Check Nat is Enum
+=================
+
+check Nat : Enum
+
+---
+
+(source_file
+    (check
+        (nat)
+        (colon)
+        (enum)))
+
+
+=====================
+Check Fin n is Finite
+=====================
+
+check Fin n : Finite
+
+---
+
+(source_file
+    (check
+        (fin
+            (identifier))
+        (colon)
+        (finite)))
