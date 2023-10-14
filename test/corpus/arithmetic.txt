@@ -1,0 +1,120 @@
+===
+Plus
+===
+
+check 3 + x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(plus)
+		(identifier)))
+
+===
+Minus
+===
+
+check 4 - aaa
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(minus)
+		(identifier)))
+
+===
+Times
+===
+
+check cow * lama
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(times)
+		(identifier)))
+
+===
+Divide
+===
+
+check 3 / x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(divide)
+		(identifier)))
+
+
+===
+Pow
+===
+
+check 3 ** x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(pow)
+		(identifier)))
+
+====
+Multiple operations
+===
+
+check 3 + 4 * (x ** 2) - 1
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(plus)
+		(numeral)
+		(times)
+		(lparen)
+		(identifier)
+		(pow)
+		(numeral)
+		(rparen)
+		(minus)
+		(numeral)))
+
+
+===
+An equality
+===
+
+check 3 * x = (y / x)
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(times)
+		(identifier)
+		(equal)
+		(lparen)
+		(identifier)
+		(divide)
+		(identifier)
+		(rparen)))

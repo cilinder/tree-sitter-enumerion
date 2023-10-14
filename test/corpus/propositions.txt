@@ -1,0 +1,294 @@
+=============
+True constant
+=============
+
+check True
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(true_const)))
+
+
+======================
+True constant (unicode)
+======================
+
+check ⊤
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(true_const)))
+
+
+====
+False const
+====
+
+check False
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(false_const)))
+
+===
+False const (unicode)
+===
+
+check ⊥
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(false_const)))
+
+
+===
+Conjunction
+===
+
+check p && q
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(land)
+		(identifier)))
+
+===
+Conjunction (unicode)
+===
+
+check p ∧ q
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(land)
+		(identifier)))
+
+===
+Disjunction
+===
+
+check p || q
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(lor)
+		(identifier)))
+
+===
+Disjunction (unicode)
+===
+
+check p ∨ q
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(lor)
+		(identifier)))
+
+
+===
+Implication
+===
+
+check p => False
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(darrow)
+		(false_const)))
+
+===
+Negation
+===
+
+check not p
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(neg)
+		(identifier)))
+
+===
+Less than
+===
+
+check 3 < x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(lt)
+		(identifier)))
+
+
+===
+Less than or equal
+===
+
+check y <= 10
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(identifier)
+		(leq)
+		(numeral)))
+
+
+
+===
+Equal
+===
+
+check 3 = x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(numeral)
+		(equal)
+		(identifier)))
+
+
+===
+Exists
+===
+
+check exists (x : Nat), ⊤
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(exists_expr
+			(exists)
+			(lparen)
+			(identifier)
+			(colon)
+			(nat)
+			(rparen)
+			(comma)
+			(true_const))))
+
+
+===
+Exists (unicode)
+===
+
+check ∃ (x : Fin 3) (y : Nat), y < x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(exists_expr
+			(exists)
+			(lparen)
+			(identifier)
+			(colon)
+			(fin)
+			(numeral)
+			(rparen)
+			(lparen)
+			(identifier)
+			(colon)
+			(nat)
+			(rparen)
+			(comma)
+			(identifier)
+			(lt)
+			(identifier))))
+
+===
+Forall
+===
+
+check forall (x : Nat), ⊤
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(forall_expr
+			(forall)
+			(lparen)
+			(identifier)
+			(colon)
+			(nat)
+			(rparen)
+			(comma)
+			(true_const))))
+
+===
+Forall (unicode)
+===
+
+check ∀ (x : Fin 3) (y : Nat), y < x
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(forall_expr
+			(forall)
+			(lparen)
+			(identifier)
+			(colon)
+			(fin)
+			(numeral)
+			(rparen)
+			(lparen)
+			(identifier)
+			(colon)
+			(nat)
+			(rparen)
+			(comma)
+			(identifier)
+			(lt)
+			(identifier))))

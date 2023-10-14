@@ -20,7 +20,7 @@ check 1 : Nat
 
 (source_file
   (comment)
-  (check_command
+  (toplevel
     (check)
     (numeral)
     (colon)

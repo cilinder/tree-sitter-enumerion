@@ -1,66 +1,13 @@
 [
   {
-    "type": "check_command",
+    "type": "begin",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "check",
-          "named": true
-        },
-        {
-          "type": "colon",
-          "named": true
-        },
-        {
-          "type": "darrow",
-          "named": true
-        },
-        {
-          "type": "dependent_function",
-          "named": true
-        },
-        {
-          "type": "enum",
-          "named": true
-        },
-        {
-          "type": "fin",
-          "named": true
-        },
-        {
-          "type": "finite",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "lambda_expr",
-          "named": true
-        },
-        {
-          "type": "nat",
-          "named": true
-        },
-        {
-          "type": "numeral",
-          "named": true
-        },
-        {
-          "type": "prop",
-          "named": true
-        },
-        {
-          "type": "simple_function",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
+  },
+  {
+    "type": "check",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "dependent_function",
@@ -70,6 +17,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
         {
           "type": "colon",
           "named": true
@@ -87,7 +38,27 @@
           "named": true
         },
         {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
           "named": true
         },
         {
@@ -99,6 +70,10 @@
           "named": true
         },
         {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -107,7 +82,31 @@
           "named": true
         },
         {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
           "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
           "named": true
         },
         {
@@ -115,7 +114,19 @@
           "named": true
         },
         {
+          "type": "neg",
+          "named": true
+        },
+        {
           "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
           "named": true
         },
         {
@@ -133,9 +144,351 @@
         {
           "type": "simple_function",
           "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "enum",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "exists",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "exists_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "neg",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "false_const",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "fin",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "finite",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "forall",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "forall_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "forall",
+          "named": true
+        },
+        {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "neg",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lambda",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "lambda_expr",
@@ -145,6 +498,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
         {
           "type": "colon",
           "named": true
@@ -158,7 +515,27 @@
           "named": true
         },
         {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
           "named": true
         },
         {
@@ -167,6 +544,10 @@
         },
         {
           "type": "finite",
+          "named": true
+        },
+        {
+          "type": "forall_expr",
           "named": true
         },
         {
@@ -182,7 +563,31 @@
           "named": true
         },
         {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
           "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
           "named": true
         },
         {
@@ -190,7 +595,19 @@
           "named": true
         },
         {
+          "type": "neg",
+          "named": true
+        },
+        {
           "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
           "named": true
         },
         {
@@ -204,9 +621,197 @@
         {
           "type": "simple_function",
           "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "match",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "match_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "neg",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
+        },
+        {
+          "type": "vbar",
+          "named": true
+        },
+        {
+          "type": "with_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nat",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "neg",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "prod",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "prop",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "simple_function",
@@ -221,6 +826,14 @@
           "named": true
         },
         {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
           "type": "darrow",
           "named": true
         },
@@ -229,7 +842,27 @@
           "named": true
         },
         {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
           "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
           "named": true
         },
         {
@@ -241,6 +874,10 @@
           "named": true
         },
         {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -249,7 +886,39 @@
           "named": true
         },
         {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
+          "named": true
+        },
+        {
           "type": "nat",
+          "named": true
+        },
+        {
+          "type": "neg",
           "named": true
         },
         {
@@ -257,11 +926,31 @@
           "named": true
         },
         {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
+          "named": true
+        },
+        {
           "type": "prop",
           "named": true
         },
         {
+          "type": "rparen",
+          "named": true
+        },
+        {
           "type": "simple_function",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
           "named": true
         }
       ]
@@ -276,23 +965,200 @@
       "required": false,
       "types": [
         {
-          "type": "check_command",
+          "type": "comment",
           "named": true
         },
         {
-          "type": "comment",
+          "type": "toplevel",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "toplevel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "begin",
+          "named": true
+        },
+        {
+          "type": "check",
+          "named": true
+        },
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "divide",
+          "named": true
+        },
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "equal",
+          "named": true
+        },
+        {
+          "type": "exists_expr",
+          "named": true
+        },
+        {
+          "type": "false_const",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "forall_expr",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "land",
+          "named": true
+        },
+        {
+          "type": "leq",
+          "named": true
+        },
+        {
+          "type": "lor",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "minus",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "neg",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "plus",
+          "named": true
+        },
+        {
+          "type": "pow",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        },
+        {
+          "type": "times",
+          "named": true
+        },
+        {
+          "type": "true_const",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "true_const",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "with_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "Enum",
+    "named": false
+  },
+  {
+    "type": "Fin",
+    "named": false
+  },
+  {
+    "type": "Finite",
+    "named": false
+  },
+  {
+    "type": "Nat",
+    "named": false
+  },
+  {
+    "type": "Prop",
+    "named": false
+  },
+  {
     "type": "arrow",
     "named": true
   },
   {
+    "type": "begin",
+    "named": false
+  },
+  {
     "type": "check",
-    "named": true
+    "named": false
   },
   {
     "type": "colon",
@@ -311,15 +1177,19 @@
     "named": true
   },
   {
-    "type": "enum",
+    "type": "divide",
     "named": true
   },
   {
-    "type": "fin",
-    "named": true
+    "type": "end",
+    "named": false
   },
   {
-    "type": "finite",
+    "type": "enumerate",
+    "named": false
+  },
+  {
+    "type": "equal",
     "named": true
   },
   {
@@ -327,7 +1197,15 @@
     "named": true
   },
   {
-    "type": "lambda",
+    "type": "land",
+    "named": true
+  },
+  {
+    "type": "leq",
+    "named": true
+  },
+  {
+    "type": "lor",
     "named": true
   },
   {
@@ -335,7 +1213,15 @@
     "named": true
   },
   {
-    "type": "nat",
+    "type": "lt",
+    "named": true
+  },
+  {
+    "type": "match",
+    "named": false
+  },
+  {
+    "type": "minus",
     "named": true
   },
   {
@@ -343,15 +1229,39 @@
     "named": true
   },
   {
-    "type": "prod",
+    "type": "plus",
     "named": true
   },
   {
-    "type": "prop",
+    "type": "pow",
     "named": true
   },
   {
     "type": "rparen",
     "named": true
+  },
+  {
+    "type": "size",
+    "named": false
+  },
+  {
+    "type": "stream",
+    "named": false
+  },
+  {
+    "type": "tag",
+    "named": true
+  },
+  {
+    "type": "times",
+    "named": true
+  },
+  {
+    "type": "vbar",
+    "named": true
+  },
+  {
+    "type": "with",
+    "named": false
   }
 ]

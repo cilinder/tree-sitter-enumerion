@@ -3,19 +3,13 @@ module.exports = grammar({
 
     rules: {
 	// TODO: add the actual grammar rules
-	source_file: $ => repeat(choice($.comment, $._toplevel)),
+	source_file: $ => repeat(choice($.comment, $.toplevel)),
 
 	comment: $ => /(\(\*.*\*\))/,
 
-	_toplevel: $ => choice(
-	    $.check_command,
+	toplevel: $ => choice(
+	    seq($.check, $._expr),
 	    // TODO toplevel commands
-	),
-
-	check_command: $ => seq(
-	    $.check,
-	    $._expr,
-	    optional(seq($.colon, $._expr)),
 	),
 
 	_expr: $ => choice(
@@ -23,16 +17,31 @@ module.exports = grammar({
 	    $.lambda_expr,
 	    $.dependent_function,
             $.simple_function,
+	    $.exists_expr,
+	    $.forall_expr,
+	    $.match_expr,
+	    seq($._infix_expr, $.colon, $._expr),
 	),
 
 	_infix_expr: $ => choice(
             $._app_expr,
             $._darrow_expr,
+	    $._or_expr,
+	    $._and_expr,
+	    $._lt_expr,
+	    $._leq_expr,
+	    $._equal_expr,
+	    $._plus_expr,
+	    $._minus_expr,
+	    $._times_expr,
+	    $._divide_expr,
+	    $._pow_expr,
+	    // TODO General infix operation
 	),
 
 	_app_expr: $ => choice(
 	    $._prefix_expr,
-	    // seq($.not, $._prefix_expr),
+	    seq($.neg, $._prefix_expr),
 	    // seq($.size, $._prefix_expr),
 	    seq($.fin, $._prefix_expr),
 	    // seq($.stream, $._prefix_expr),
@@ -51,8 +60,8 @@ module.exports = grammar({
 	),
 
 	_simple_expr: $ => choice(
-	    // seq($.lparen, $._expr, $.rparen),
-	    // seq($.begin, $._expr, $.end),
+	    seq($.lparen, $._expr, $.rparen),
+	    seq($.begin, $._expr, $.end),
 	    // seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
 	    $.numeral,
 	    $.identifier,
@@ -60,8 +69,8 @@ module.exports = grammar({
 	    $.finite,
 	    $.prop,
 	    $.nat,
-	    // $.true,
-	    // $.false,
+	    $.true_const,
+	    $.false_const,
 	    // TODO Other simple exprs
 	),
 
@@ -78,12 +87,60 @@ module.exports = grammar({
 	    $.comma,
 	    $._expr,
 	),
-	
+
+	simple_function: $ => seq(
+            $._infix_expr,
+            $.arrow,
+            $._expr,
+	),
+
+	exists_expr: $ => seq(
+	    $.exists,
+	    $._quantifier_abstraction,
+	    $.comma,
+	    $._expr,
+	),
+
+	forall_expr: $ => seq (
+	    $.forall,
+	    $._quantifier_abstraction,
+	    $.comma,
+	    $._expr,
+	),
+
+	match_expr: $ => seq (
+	    $.match,
+	    $._expr,
+	    $.with_keyword,
+	    $._match_cases,
+	    $.end,
+	),
+
 	_darrow_expr: $ => prec.right(seq(
             $._infix_expr,
             $.darrow,
             $._infix_expr,
 	)),
+
+	_or_expr: $ => prec.left(seq($._infix_expr, $.lor, $._infix_expr)),
+
+	_and_expr: $ => prec.left(seq($._infix_expr, $.land, $._infix_expr)),
+
+	_lt_expr: $ => prec.left(seq($._infix_expr, $.lt, $._infix_expr)),
+
+	_leq_expr: $ => prec.left(seq($._infix_expr, $.leq, $._infix_expr)),
+
+	_equal_expr: $ => prec.left(seq($._infix_expr, $.equal, $._infix_expr)),
+
+	_plus_expr: $ => prec.left(seq($._infix_expr, $.plus, $._infix_expr)),
+
+	_minus_expr: $ => prec.left(seq($._infix_expr, $.minus, $._infix_expr)),
+
+	_times_expr: $ => prec.left(seq($._infix_expr, $.times, $._infix_expr)),
+
+	_divide_expr: $ => prec.left(seq($._infix_expr, $.divide, $._infix_expr)),
+
+	_pow_expr: $ => prec.right(seq($._infix_expr, $.pow, $._infix_expr)),
 
 	_lambda_abstraction: $ => choice(
 	    repeat1($.identifier),
@@ -103,55 +160,110 @@ module.exports = grammar({
 	    $.rparen
 	),
 
-	check: $ => 'check',
+	_match_cases: $ => repeat1(seq(
+	    $.vbar,
+	    $._match_case,
+	)),
 
-	prop: $ => 'Prop',
-
-	finite: $ => 'Finite',
-
-	enum: $ => 'Enum',
-
-	nat: $ => 'Nat',
-
-	fin: $ => 'Fin',
-
-	not: $ => /(not)|(¬)/,
-
-	size: $ => 'size',
-
-	stream: $ => 'stream',
-
-	enumerate: $ => 'enumerate',
-
-	true: $ => /(True)|(⊤)/,
-
-	false: $ => /(False)|(⊥)/,
-
-	lambda: $ => /(fun)|(\u03BB)/,
-
-	prod: $ => /(product)|(\u03A0)|(\u220F)/,
-	
-	simple_function: $ => seq(
-            $._infix_expr,
-            $.arrow,
-            $._expr,
+	_match_case: $ => seq(
+	    $._pattern,
+	    $.darrow,
+	    $._expr,
 	),
 
-	identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
+	
+	_pattern: $ => choice(
+	    $.tag,
+	    seq($.tag, $.lparen, $.identifier, $.colon, $._expr, $.rparen),
+	),
 
-	numeral: $ => /(\d+)/,
+	check: $ => prec(2, 'check'),
 
-	colon: $ => ':',
+	prop: $ => prec(2, 'Prop'),
+
+	finite: $ => prec(2, 'Finite'),
+
+	enum: $ => prec(2, 'Enum'),
+
+	nat: $ => prec(2, 'Nat'),
+
+	fin: $ => prec(2, 'Fin'),
+
+	size: $ => prec(2, 'size'),
+
+	stream: $ => prec(2, 'stream'),
+
+	enumerate: $ => prec(2, 'enumerate'),
+
+	with_keyword: $ => prec(2, 'with'),
+
+	match: $ => prec(2, 'match'),
+
+	begin: $ => prec(2, 'begin'),
+
+	end: $ => prec(2, 'end'),
+
+	true_const: $ => prec(10, /(True)|(\u22A4)/),
+
+	false_const: $ => prec(10, /(False)|(\u22A5)/),
+
+	lambda: $ => prec(10, /(fun)|(\u03BB)/),
+
+	prod: $ => prec(10, /(product)|(\u03A0)|(\u220F)/),
 
 	arrow: $ => /(->)|(\u2192)/,
 
 	darrow: $ => /(=>)|(\u21D2)/,
 
+	plus: $ => '+',
+
+	minus: $ => '-',
+
+	times: $ => '*',
+
+	divide: $ => '/',
+
+	pow: $ => '**',
+
+	lt: $ => '<',
+
+	leq: $ => /(<=)|(\u2264)/,
+
+	equal: $ => '=',
+
+	exists: $ => prec(10, /(exists)|(\u2203)/),
+
+	forall: $ => prec(10, /(forall)|(\u2200)/),
+
+	land: $ => /(&&)|(\u2227)/,
+
+	lor: $ => /(\|\|)|(\u2228)/,
+
+	neg: $ => prec(1, /(not)|(\u00AC¬)/),
+
+	colon: $ => ':',
+
 	lparen: $ => '(',
 
 	rparen: $ => ')',
 
+	lbrace: $ => '{',
+
+	rbrace: $ => '}',
+
 	comma: $ => ',',
 
+	semicolon: $ => ';',
+
+	vbar: $ => '|',
+
+	coloneq: $ => ':=',
+
+	identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
+
+	numeral: $ => /(\d+)/,
+	
+	tag: $ => /(`[a-z][a-z0-9_]*)/,
+	
     }
 });

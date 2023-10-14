@@ -7,7 +7,7 @@ check 1
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (numeral)))
 
@@ -20,7 +20,7 @@ check 1 : Nat
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (numeral)
     (colon)
@@ -35,7 +35,7 @@ check x
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (identifier)))
 
@@ -48,7 +48,7 @@ check 4 : Fin 5
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (numeral)
     (colon)
@@ -64,7 +64,7 @@ check Nat : Enum
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (nat)
     (colon)
@@ -79,7 +79,7 @@ check Fin n : Finite
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (fin)
     (identifier)
@@ -96,26 +96,26 @@ check 2 : Nat
 --------------------------------------------------------------------------------
 
 (source_file
-  (check_command
+  (toplevel
     (check)
     (numeral)
     (colon)
     (nat))
-  (check_command
+  (toplevel
     (check)
     (numeral)
     (colon)
     (nat)))
 
-================
+================================================================================
 Check a variable
-================
+================================================================================
 
 check x
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(check_command
-		(check)
-		(identifier)))
+  (toplevel
+    (check)
+    (identifier)))
