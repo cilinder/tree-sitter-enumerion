@@ -1,1 +1,1 @@
-check 1 : Fin 2
+check fun (x : Nat) => x

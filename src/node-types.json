@@ -1,16 +1,12 @@
 [
   {
-    "type": "source_file",
+    "type": "check_command",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
-        {
-          "type": "arrow",
-          "named": true
-        },
         {
           "type": "check",
           "named": true
@@ -20,11 +16,11 @@
           "named": true
         },
         {
-          "type": "comment",
+          "type": "darrow",
           "named": true
         },
         {
-          "type": "darrow",
+          "type": "dependent_function",
           "named": true
         },
         {
@@ -44,6 +40,10 @@
           "named": true
         },
         {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
           "type": "nat",
           "named": true
         },
@@ -53,6 +53,234 @@
         },
         {
           "type": "prop",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dependent_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "comma",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "prod",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lambda_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "colon",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "lparen",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "rparen",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simple_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        },
+        {
+          "type": "darrow",
+          "named": true
+        },
+        {
+          "type": "dependent_function",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "fin",
+          "named": true
+        },
+        {
+          "type": "finite",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "nat",
+          "named": true
+        },
+        {
+          "type": "numeral",
+          "named": true
+        },
+        {
+          "type": "prop",
+          "named": true
+        },
+        {
+          "type": "simple_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "check_command",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         }
       ]
@@ -68,6 +296,10 @@
   },
   {
     "type": "colon",
+    "named": true
+  },
+  {
+    "type": "comma",
     "named": true
   },
   {
@@ -95,6 +327,14 @@
     "named": true
   },
   {
+    "type": "lambda",
+    "named": true
+  },
+  {
+    "type": "lparen",
+    "named": true
+  },
+  {
     "type": "nat",
     "named": true
   },
@@ -103,7 +343,15 @@
     "named": true
   },
   {
+    "type": "prod",
+    "named": true
+  },
+  {
     "type": "prop",
+    "named": true
+  },
+  {
+    "type": "rparen",
     "named": true
   }
 ]

@@ -8,13 +8,21 @@ module.exports = grammar({
 	comment: $ => /(\(\*.*\*\))/,
 
 	_toplevel: $ => choice(
-	    seq($.check, $._expr, optional(seq($.colon, $._expr))),
+	    $.check_command,
 	    // TODO toplevel commands
+	),
+
+	check_command: $ => seq(
+	    $.check,
+	    $._expr,
+	    optional(seq($.colon, $._expr)),
 	),
 
 	_expr: $ => choice(
             $._infix_expr,
-            // $._simple_function_space,
+	    $.lambda_expr,
+	    $.dependent_function,
+            $.simple_function,
 	),
 
 	_infix_expr: $ => choice(
@@ -57,11 +65,43 @@ module.exports = grammar({
 	    // TODO Other simple exprs
 	),
 
+	lambda_expr: $ => seq(
+	    $.lambda,
+	    $._lambda_abstraction,
+	    $.darrow,
+	    $._expr,
+	),
+
+	dependent_function: $ => seq(
+	    $.prod,
+	    $._quantifier_abstraction,
+	    $.comma,
+	    $._expr,
+	),
+	
 	_darrow_expr: $ => prec.right(seq(
             $._infix_expr,
             $.darrow,
             $._infix_expr,
 	)),
+
+	_lambda_abstraction: $ => choice(
+	    repeat1($.identifier),
+	    repeat1($._typed_binder)
+	),
+
+	_quantifier_abstraction: $ => choice(
+	    seq(repeat1($.identifier), $.colon, $._expr),
+	    repeat1($._typed_binder),
+	),
+
+	_typed_binder: $ => seq(
+	    $.lparen,
+	    repeat1($.identifier),
+	    $.colon,
+	    $._expr,
+	    $.rparen
+	),
 
 	check: $ => 'check',
 
@@ -86,15 +126,15 @@ module.exports = grammar({
 	true: $ => /(True)|(⊤)/,
 
 	false: $ => /(False)|(⊥)/,
+
+	lambda: $ => /(fun)|(\u03BB)/,
+
+	prod: $ => /(product)|(\u03A0)|(\u220F)/,
 	
-	_simple_function_space: $ => seq(
+	simple_function: $ => seq(
             $._infix_expr,
             $.arrow,
             $._expr,
-	),
-
-	_term: $ => choice(
-            $.numeral,
 	),
 
 	identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
@@ -105,7 +145,13 @@ module.exports = grammar({
 
 	arrow: $ => /(->)|(\u2192)/,
 
-	darrow: $ => /(=>)/
+	darrow: $ => /(=>)|(\u21D2)/,
+
+	lparen: $ => '(',
+
+	rparen: $ => ')',
+
+	comma: $ => ',',
 
     }
 });
