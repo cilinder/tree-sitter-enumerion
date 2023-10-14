@@ -1,5 +1,5 @@
-"check" @keyword
-"Fin" @type.builtin
+(check) @keyword
+(fin) @type.builtin
 (nat) @type.builtin
 (finite) @type.builtin
 (enum) @type.builtin

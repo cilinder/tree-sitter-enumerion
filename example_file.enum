@@ -1,2 +1,1 @@
-(* Next line is a check *)
-check 1 : Nat
+check 1 : Fin 2

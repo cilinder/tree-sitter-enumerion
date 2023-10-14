@@ -25,108 +25,164 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "check"
-        }
-      ]
-    },
-    "check": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "check"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_expression"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "colon"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_expression"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "check"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "_expr"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "colon"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expr"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         }
       ]
     },
-    "_expression": {
+    "_expr": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_type"
+          "name": "_infix_expr"
         },
         {
           "type": "SYMBOL",
-          "name": "_term"
+          "name": "_simple_function_space"
+        }
+      ]
+    },
+    "_infix_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_app_expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_darrow_expr"
+        }
+      ]
+    },
+    "_app_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_prefix_expr"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "fin"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_prefix_expr"
+            }
+          ]
+        }
+      ]
+    },
+    "_prefix_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_proj_expr"
+        }
+      ]
+    },
+    "_proj_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_simple_expr"
+        }
+      ]
+    },
+    "_simple_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "numeral"
         },
         {
           "type": "SYMBOL",
           "name": "identifier"
-        }
-      ]
-    },
-    "_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_universe"
         },
         {
           "type": "SYMBOL",
-          "name": "nat"
+          "name": "enum"
         },
-        {
-          "type": "SYMBOL",
-          "name": "fin"
-        }
-      ]
-    },
-    "_universe": {
-      "type": "CHOICE",
-      "members": [
         {
           "type": "SYMBOL",
           "name": "finite"
         },
         {
           "type": "SYMBOL",
-          "name": "enum"
-        }
-      ]
-    },
-    "nat": {
-      "type": "STRING",
-      "value": "Nat"
-    },
-    "fin": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "Fin"
+          "name": "prop"
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "nat"
         }
       ]
+    },
+    "_darrow_expr": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_infix_expr"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "darrow"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_infix_expr"
+          }
+        ]
+      }
+    },
+    "check": {
+      "type": "STRING",
+      "value": "check"
+    },
+    "prop": {
+      "type": "STRING",
+      "value": "Prop"
     },
     "finite": {
       "type": "STRING",
@@ -135,6 +191,55 @@
     "enum": {
       "type": "STRING",
       "value": "Enum"
+    },
+    "nat": {
+      "type": "STRING",
+      "value": "Nat"
+    },
+    "fin": {
+      "type": "STRING",
+      "value": "Fin"
+    },
+    "not": {
+      "type": "PATTERN",
+      "value": "(not)|(¬)"
+    },
+    "size": {
+      "type": "STRING",
+      "value": "size"
+    },
+    "stream": {
+      "type": "STRING",
+      "value": "stream"
+    },
+    "enumerate": {
+      "type": "STRING",
+      "value": "enumerate"
+    },
+    "true": {
+      "type": "PATTERN",
+      "value": "(True)|(⊤)"
+    },
+    "false": {
+      "type": "PATTERN",
+      "value": "(False)|(⊥)"
+    },
+    "_simple_function_space": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_infix_expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "arrow"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expr"
+        }
+      ]
     },
     "_term": {
       "type": "CHOICE",
@@ -156,6 +261,14 @@
     "colon": {
       "type": "STRING",
       "value": ":"
+    },
+    "arrow": {
+      "type": "PATTERN",
+      "value": "(->)|(\\u2192)"
+    },
+    "darrow": {
+      "type": "PATTERN",
+      "value": "(=>)"
     }
   },
   "extras": [

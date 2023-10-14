@@ -21,7 +21,7 @@ check 1 : Nat
 
 (source_file
     (comment)
-    (check
-        (numeral)
-        (colon)
-        (nat)))
+    (check)
+    (numeral)
+    (colon)
+    (nat))

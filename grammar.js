@@ -1,61 +1,111 @@
 module.exports = grammar({
-  name: 'enumerion',
+    name: 'enumerion',
 
-  rules: {
-    // TODO: add the actual grammar rules
-    source_file: $ => repeat(choice($.comment, $._toplevel)),
+    rules: {
+	// TODO: add the actual grammar rules
+	source_file: $ => repeat(choice($.comment, $._toplevel)),
 
-    comment: $ => /(\(\*.*\*\))/,
+	comment: $ => /(\(\*.*\*\))/,
 
-    _toplevel: $ => choice(
-        $.check
-        // TODO toplevel commands
-    ),
+	_toplevel: $ => choice(
+	    seq($.check, $._expr, optional(seq($.colon, $._expr))),
+	    // TODO toplevel commands
+	),
 
-    check: $ => seq(
-        'check',
-        $._expression,
-        optional(seq($.colon, $._expression))
-    ),
+	_expr: $ => choice(
+            $._infix_expr,
+            // $._simple_function_space,
+	),
 
-    _expression: $ => choice(
-        $._type,
-        $._term,
-        $.identifier
-    ),
+	_infix_expr: $ => choice(
+            $._app_expr,
+            $._darrow_expr,
+	),
 
-    _type: $ => choice(
-        $._universe,
-        $.nat,
-        $.fin,
-        // TODO
-    ),
+	_app_expr: $ => choice(
+	    $._prefix_expr,
+	    // seq($.not, $._prefix_expr),
+	    // seq($.size, $._prefix_expr),
+	    seq($.fin, $._prefix_expr),
+	    // seq($.stream, $._prefix_expr),
+	    // seq($.enumerate, $._prefix_expr),
+	    // seq($._app_expr, $._prefix_expr),
+	),
 
-    _universe: $ => choice(
-        $.finite,
-        $.enum
-    ),
+	_prefix_expr: $ => choice(
+	    $._proj_expr,
+	    // TODO Prefix expression
+	),
 
-    nat: $ => 'Nat',
+	_proj_expr: $ => choice(
+	    $._simple_expr,
+	    // seq($._proj_expr, $.period, $.identifier)
+	),
 
-    fin: $ => seq(
-        'Fin',
-        $._expression
-    ),
+	_simple_expr: $ => choice(
+	    // seq($.lparen, $._expr, $.rparen),
+	    // seq($.begin, $._expr, $.end),
+	    // seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
+	    $.numeral,
+	    $.identifier,
+	    $.enum,
+	    $.finite,
+	    $.prop,
+	    $.nat,
+	    // $.true,
+	    // $.false,
+	    // TODO Other simple exprs
+	),
 
-    finite: $ => 'Finite',
+	_darrow_expr: $ => prec.right(seq(
+            $._infix_expr,
+            $.darrow,
+            $._infix_expr,
+	)),
 
-    enum: $ => 'Enum',
+	check: $ => 'check',
 
-    _term: $ => choice(
-        $.numeral,
-    ),
+	prop: $ => 'Prop',
 
-    identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
+	finite: $ => 'Finite',
 
-    numeral: $ => /(\d+)/,
+	enum: $ => 'Enum',
 
-    colon: $ => ':',
+	nat: $ => 'Nat',
 
-  }
+	fin: $ => 'Fin',
+
+	not: $ => /(not)|(¬)/,
+
+	size: $ => 'size',
+
+	stream: $ => 'stream',
+
+	enumerate: $ => 'enumerate',
+
+	true: $ => /(True)|(⊤)/,
+
+	false: $ => /(False)|(⊥)/,
+	
+	_simple_function_space: $ => seq(
+            $._infix_expr,
+            $.arrow,
+            $._expr,
+	),
+
+	_term: $ => choice(
+            $.numeral,
+	),
+
+	identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
+
+	numeral: $ => /(\d+)/,
+
+	colon: $ => ':',
+
+	arrow: $ => /(->)|(\u2192)/,
+
+	darrow: $ => /(=>)/
+
+    }
 });
