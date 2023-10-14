@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "tree_sitter_Enumerion_binding",
+      "target_name": "tree_sitter_enumerion_binding",
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
         "src"

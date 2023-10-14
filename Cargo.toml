@@ -1,10 +1,10 @@
 [package]
-name = "tree-sitter-Enumerion"
-description = "Enumerion grammar for the tree-sitter parsing library"
+name = "tree-sitter-enumerion"
+description = "enumerion grammar for the tree-sitter parsing library"
 version = "0.0.1"
-keywords = ["incremental", "parsing", "Enumerion"]
+keywords = ["incremental", "parsing", "enumerion"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-Enumerion"
+repository = "https://github.com/tree-sitter/tree-sitter-enumerion"
 edition = "2018"
 license = "MIT"
 

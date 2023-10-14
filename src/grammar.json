@@ -1,5 +1,5 @@
 {
-  "name": "Enumerion",
+  "name": "enumerion",
   "rules": {
     "source_file": {
       "type": "REPEAT",

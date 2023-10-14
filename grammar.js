@@ -1,5 +1,5 @@
 module.exports = grammar({
-  name: 'Enumerion',
+  name: 'enumerion',
 
   rules: {
     // TODO: add the actual grammar rules
