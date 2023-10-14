@@ -5,7 +5,7 @@ module.exports = grammar({
     // TODO: add the actual grammar rules
     source_file: $ => repeat(choice($.comment, $._toplevel)),
 
-    comment: $ => /\(\*.*\*\)/,
+    comment: $ => /(\(\*.*\*\))/,
 
     _toplevel: $ => choice(
         $.check
@@ -53,7 +53,7 @@ module.exports = grammar({
 
     identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
 
-    numeral: $ => /\d+/,
+    numeral: $ => /(\d+)/,
 
     colon: $ => ':',
 

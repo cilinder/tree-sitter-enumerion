@@ -19,7 +19,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "\\(\\*.*\\*\\)"
+      "value": "(\\(\\*.*\\*\\))"
     },
     "_toplevel": {
       "type": "CHOICE",
@@ -151,7 +151,7 @@
     },
     "numeral": {
       "type": "PATTERN",
-      "value": "\\d+"
+      "value": "(\\d+)"
     },
     "colon": {
       "type": "STRING",
