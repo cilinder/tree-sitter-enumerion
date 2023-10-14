@@ -3,7 +3,9 @@ module.exports = grammar({
 
   rules: {
     // TODO: add the actual grammar rules
-    source_file: $ => repeat($._toplevel),
+    source_file: $ => repeat(choice($.comment, $._toplevel)),
+
+    comment: $ => /\(\*.*\*\)/,
 
     _toplevel: $ => choice(
         $.check
