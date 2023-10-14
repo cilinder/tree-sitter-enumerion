@@ -84,6 +84,10 @@
         {
           "type": "check",
           "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
         }
       ]
     }
@@ -98,6 +102,10 @@
   },
   {
     "type": "colon",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {

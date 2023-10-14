@@ -1,0 +1,15 @@
+check 3 : Nat
+(* ^ keyword *)
+(*    ^ number *)
+(*         ^ type.builtin *)
+
+check Nat : Enum
+(* ^ keyword *)
+(*    ^ type.builtin *)
+(*            ^ type.builtin *)
+
+check Fin 4 : Finite
+(* ^ keyword *)
+(*    ^ type.builtin *)
+(*        ^ number *)
+(*             ^ type.builtin *)

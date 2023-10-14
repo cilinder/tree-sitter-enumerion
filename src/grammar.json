@@ -4,9 +4,22 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "_toplevel"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_toplevel"
+          }
+        ]
       }
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "\\(\\*.*\\*\\)"
     },
     "_toplevel": {
       "type": "CHOICE",
