@@ -1549,6 +1549,21 @@
     "fields": {}
   },
   {
+    "type": "tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "backtick",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "toplevel",
     "named": true,
     "fields": {},
@@ -1815,6 +1830,10 @@
     "named": false
   },
   {
+    "type": "backtick",
+    "named": true
+  },
+  {
     "type": "begin",
     "named": false
   },
@@ -1957,10 +1976,6 @@
   {
     "type": "structure",
     "named": false
-  },
-  {
-    "type": "tag",
-    "named": true
   },
   {
     "type": "times",

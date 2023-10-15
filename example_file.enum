@@ -1,1 +1,1 @@
-check fun (x : Nat) => x
+check True

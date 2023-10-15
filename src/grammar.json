@@ -1575,6 +1575,10 @@
       "type": "STRING",
       "value": ":="
     },
+    "backtick": {
+      "type": "STRING",
+      "value": "`"
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9]*)"
@@ -1588,8 +1592,17 @@
       "value": "\"[^\"]\""
     },
     "tag": {
-      "type": "PATTERN",
-      "value": "(`[a-zA-Z][a-zA-Z0-9_]*)"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "backtick"
+        },
+        {
+          "type": "PATTERN",
+          "value": "([a-zA-Z][a-zA-Z0-9_]*)"
+        }
+      ]
     }
   },
   "extras": [

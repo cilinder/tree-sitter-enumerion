@@ -328,13 +328,15 @@ module.exports = grammar({
 
 	coloneq: $ => ':=',
 
+	backtick: $ => '`',
+
 	identifier: $ => /(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9]*)/,
 
 	numeral: $ => /(\d+)/,
 
 	quoted_string: $ => /"[^"]"/,
 	
-	tag: $ => /(`[a-zA-Z][a-zA-Z0-9_]*)/,
+	tag: $ => seq($.backtick, /([a-zA-Z][a-zA-Z0-9_]*)/),
 	
     }
 });
