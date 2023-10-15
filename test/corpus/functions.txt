@@ -80,7 +80,7 @@ check fun x => 3
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (identifier)
       (darrow)
       (numeral))))
@@ -97,7 +97,7 @@ check fun (x : Nat) => x
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (lparen)
       (identifier)
       (colon)
@@ -118,7 +118,7 @@ check fun x y z => x
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (identifier)
       (identifier)
       (identifier)
@@ -137,7 +137,7 @@ check fun (x : Nat) (y : Fin 3) => 3
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (lparen)
       (identifier)
       (colon)
@@ -164,7 +164,7 @@ check λ (x : Fin 3) => 3
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (lparen)
       (identifier)
       (colon)
@@ -186,7 +186,7 @@ check fun x ⇒ 1
   (toplevel
     (check)
     (lambda_expr
-      (lambda)
+      (fun)
       (identifier)
       (darrow)
       (numeral))))
@@ -352,7 +352,7 @@ check (λ (x y : Nat) => x * y - 1) 5
     (app
       (lparen)
       (lambda_expr
-        (lambda)
+        (fun)
         (lparen)
         (identifier)
         (identifier)

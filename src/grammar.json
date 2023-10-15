@@ -450,7 +450,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "lambda"
+          "name": "fun"
         },
         {
           "type": "SYMBOL",
@@ -1447,7 +1447,7 @@
         "value": "(False)|(\\u22A5)"
       }
     },
-    "lambda": {
+    "fun": {
       "type": "PREC",
       "value": 10,
       "content": {

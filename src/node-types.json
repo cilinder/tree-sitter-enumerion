@@ -879,7 +879,7 @@
     }
   },
   {
-    "type": "lambda",
+    "type": "fun",
     "named": true,
     "fields": {}
   },
@@ -960,11 +960,11 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "fun",
           "named": true
         },
         {
-          "type": "lambda",
+          "type": "identifier",
           "named": true
         },
         {

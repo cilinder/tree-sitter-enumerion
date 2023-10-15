@@ -83,7 +83,7 @@ module.exports = grammar({
 	app: $ => seq($._app_expr, $._prefix_expr),
 
 	lambda_expr: $ => seq(
-	    $.lambda,
+	    $.fun,
 	    $._lambda_abstraction,
 	    $.darrow,
 	    $._expr,
@@ -274,7 +274,7 @@ module.exports = grammar({
 
 	false_const: $ => prec(10, /(False)|(\u22A5)/),
 
-	lambda: $ => prec(10, /(fun)|(\u03BB)/),
+	fun: $ => prec(10, /(fun)|(\u03BB)/),
 
 	prod: $ => prec(10, /(product)|(\u03A0)|(\u220F)/),
 
