@@ -322,3 +322,48 @@ check ∏ (x : Nat), Nat
       (rparen)
       (comma)
       (nat))))
+
+================================================================================
+Function application
+================================================================================
+
+check p q
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (app
+      (identifier)
+      (identifier))))
+
+================================================================================
+More interesting function application
+================================================================================
+
+check (λ (x y : Nat) => x * y - 1) 5
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (app
+      (lparen)
+      (lambda_expr
+        (lambda)
+        (lparen)
+        (identifier)
+        (identifier)
+        (colon)
+        (nat)
+        (rparen)
+        (darrow)
+        (identifier)
+        (times)
+        (identifier)
+        (minus)
+        (numeral))
+      (rparen)
+      (numeral))))

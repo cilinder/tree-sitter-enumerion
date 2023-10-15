@@ -2,14 +2,18 @@ module.exports = grammar({
     name: 'enumerion',
 
     rules: {
-	// TODO: add the actual grammar rules
 	source_file: $ => repeat(choice($.comment, $.toplevel)),
 
 	comment: $ => /(\(\*.*\*\))/,
 
 	toplevel: $ => choice(
+	    seq($.load, $.quoted_string),
+	    seq($.definition, $.identifier, $.coloneq, $._expr),
 	    seq($.check, $._expr),
-	    // TODO toplevel commands
+	    seq($.compile, $._expr),
+	    seq($.eval, $._expr),
+	    seq($.axiom, $.identifier, $.colon, $._expr),
+	    seq($.clear),
 	),
 
 	_expr: $ => choice(
@@ -42,11 +46,11 @@ module.exports = grammar({
 	_app_expr: $ => choice(
 	    $._prefix_expr,
 	    seq($.neg, $._prefix_expr),
-	    // seq($.size, $._prefix_expr),
+	    seq($.size, $._prefix_expr),
 	    seq($.fin, $._prefix_expr),
-	    // seq($.stream, $._prefix_expr),
-	    // seq($.enumerate, $._prefix_expr),
-	    // seq($._app_expr, $._prefix_expr),
+	    seq($.stream, $._prefix_expr),
+	    seq($.enumerate, $._prefix_expr),
+	    $.app,
 	),
 
 	_prefix_expr: $ => choice(
@@ -56,23 +60,27 @@ module.exports = grammar({
 
 	_proj_expr: $ => choice(
 	    $._simple_expr,
-	    // seq($._proj_expr, $.period, $.identifier)
+	    seq($._proj_expr, $.period, $.identifier),
 	),
 
 	_simple_expr: $ => choice(
 	    seq($.lparen, $._expr, $.rparen),
 	    seq($.begin, $._expr, $.end),
-	    // seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
+	    $._structure_expr,
+	    $._variant_expr,
+	    $._record_expr,
 	    $.numeral,
 	    $.identifier,
+	    $.tag,
 	    $.enum,
 	    $.finite,
 	    $.prop,
 	    $.nat,
 	    $.true_const,
 	    $.false_const,
-	    // TODO Other simple exprs
 	),
+
+	app: $ => seq($._app_expr, $._prefix_expr),
 
 	lambda_expr: $ => seq(
 	    $.lambda,
@@ -171,14 +179,67 @@ module.exports = grammar({
 	    $._expr,
 	),
 
-	
 	_pattern: $ => choice(
 	    $.tag,
 	    seq($.tag, $.lparen, $.identifier, $.colon, $._expr, $.rparen),
 	),
 
+	_structure_expr: $ => choice(
+	    seq($.structure, $.lbrace, $.rbrace),
+	    seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
+	),
+
+	_structure_fields: $ => choice(
+	    $._structure_field,
+	    seq($._structure_field, $.semicolon),
+	    seq($._structure_field, $.semicolon, $._structure_fields),
+	),
+
+	_structure_field: $ => choice(
+	    seq($.identifier, $.colon, $._expr),
+	    seq($.axiom, $.identifier, $.colon, $._expr),
+	),
+	
+	_record_expr: $ => choice(
+	    seq($.lbrace, $.rbrace),
+	    seq($.lbrace, $._record_fields, $.rbrace),
+	),
+
+	_record_fields: $ => choice(
+	    $._record_field,
+	    seq($._record_field, $.semicolon),
+	    seq($._record_field, $.semicolon, $._record_fields),
+	),
+
+	_variant_expr: $ => choice(
+	    seq($.variant, $.lbrace, $.rbrace),
+	    seq($.variant, $.lbrace, $._variant_fields, $.rbrace),
+	),
+
+	_variant_fields: $ => choice(
+	    $._variant_field,
+	    seq($._variant_field, $.vbar, $._variant_fields),
+	),
+
+	_variant_field: $ => choice(
+	    seq($.tag, $.colon, $._expr),
+	    $.tag,
+	),
+
+	_record_field: $ => seq($.identifier, $.coloneq, $._expr),
+
+	load: $ => prec(2, 'load'),
+
+	definition: $ => prec(2, 'def'),
+
 	check: $ => prec(2, 'check'),
 
+	compile: $ => prec(2, 'compile'),
+
+	eval: $ => prec(2, 'eval'),
+
+	clear: $ => prec(2, 'clear'),
+	
 	prop: $ => prec(2, 'Prop'),
 
 	finite: $ => prec(2, 'Finite'),
@@ -202,6 +263,12 @@ module.exports = grammar({
 	begin: $ => prec(2, 'begin'),
 
 	end: $ => prec(2, 'end'),
+
+	structure: $ => prec(2, 'structure'),
+
+	variant: $ => prec(2, 'variant'),
+
+	axiom: $ => prec(2, 'axiom'),
 
 	true_const: $ => prec(10, /(True)|(\u22A4)/),
 
@@ -255,15 +322,20 @@ module.exports = grammar({
 
 	semicolon: $ => ';',
 
+	period: $ => '.',
+
 	vbar: $ => '|',
 
 	coloneq: $ => ':=',
 
-	identifier: $ => /(_[a-z0-9][a-z0-9_]*)|([a-z][a-z0-9]*)/,
+	identifier: $ => /(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9]*)/,
 
 	numeral: $ => /(\d+)/,
+
+	quoted_string: $ => /"[^"]"/,
 	
-	tag: $ => /(`[a-z][a-z0-9_]*)/,
+	tag: $ => /(`[a-zA-Z][a-zA-Z0-9_]*)/,
 	
     }
 });
+

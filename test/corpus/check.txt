@@ -119,3 +119,21 @@ check x
   (toplevel
     (check)
     (identifier)))
+
+
+===
+Check an expression in parens
+===
+
+check ((x))
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(lparen)
+		(lparen)
+		(identifier)
+		(rparen)
+		(rparen)))
