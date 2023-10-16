@@ -59,3 +59,39 @@ def V := variant { `foo | `moo : Fin 3 }
 				(fin)
 				(numeral))
 			(rbrace))))
+
+
+===
+Match statement
+===
+
+eval match `foo with
+     | `foo => 0
+     | `moo (x : Nat) => x
+     end
+
+---
+
+(source_file
+	(toplevel
+		(eval)
+		(match_expr
+			(match)
+			(tag (backtick))
+			(with_keyword)
+			(match_case
+				(vbar)
+				(tag (backtick))
+				(darrow)
+				(numeral))
+			(match_case
+				(vbar)
+				(tag (backtick))
+				(lparen)
+				(identifier)
+				(colon)
+				(nat)
+				(rparen)
+				(darrow)
+				(identifier))
+			(end))))

@@ -884,22 +884,17 @@
     "_match_cases": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "vbar"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_match_case"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "match_case"
       }
     },
-    "_match_case": {
+    "match_case": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "vbar"
+        },
         {
           "type": "SYMBOL",
           "name": "_pattern"

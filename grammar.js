@@ -168,12 +168,10 @@ module.exports = grammar({
 	    $.rparen
 	),
 
-	_match_cases: $ => repeat1(seq(
-	    $.vbar,
-	    $._match_case,
-	)),
+	_match_cases: $ => repeat1($.match_case),
 
-	_match_case: $ => seq(
+	match_case: $ => seq(
+	    $.vbar,
 	    $._pattern,
 	    $.darrow,
 	    $._expr,
