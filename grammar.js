@@ -67,7 +67,7 @@ module.exports = grammar({
 	    seq($.lparen, $._expr, $.rparen),
 	    seq($.begin, $._expr, $.end),
 	    $.structure_expr,
-	    $._variant_expr,
+	    $.variant_expr,
 	    $._record_expr,
 	    $.numeral,
 	    $.identifier,
@@ -206,27 +206,27 @@ module.exports = grammar({
 	),
 
 	_record_fields: $ => choice(
-	    $._record_field,
-	    seq($._record_field, $.semicolon),
-	    seq($._record_field, $.semicolon, $._record_fields),
+	    $.record_field,
+	    seq($.record_field, $.semicolon),
+	    seq($.record_field, $.semicolon, $._record_fields),
 	),
 
-	_variant_expr: $ => choice(
+	variant_expr: $ => choice(
 	    seq($.variant, $.lbrace, $.rbrace),
 	    seq($.variant, $.lbrace, $._variant_fields, $.rbrace),
 	),
 
 	_variant_fields: $ => choice(
-	    $._variant_field,
-	    seq($._variant_field, $.vbar, $._variant_fields),
+	    $.variant_field,
+	    seq($.variant_field, $.vbar, $._variant_fields),
 	),
 
-	_variant_field: $ => choice(
+	variant_field: $ => choice(
 	    seq($.tag, $.colon, $._expr),
 	    $.tag,
 	),
 
-	_record_field: $ => seq($.identifier, $.coloneq, $._expr),
+	record_field: $ => seq($.identifier, $.coloneq, $._expr),
 
 	load: $ => prec(2, 'load'),
 
@@ -330,13 +330,13 @@ module.exports = grammar({
 
 	backtick: $ => '`',
 
-	identifier: $ => /(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9]*)/,
+	identifier: $ => /(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9_]*)/,
 
 	numeral: $ => /(\d+)/,
 
-	quoted_string: $ => /"[^"]"/,
-	
-	tag: $ => seq($.backtick, /([a-zA-Z][a-zA-Z0-9_]*)/),
+	tag: $ => seq($.backtick, token.immediate(/([a-zA-Z][a-zA-Z0-9_]*)/)),
+
+	quoted_string: $ => /"[^"]*"/,
 	
     }
 });

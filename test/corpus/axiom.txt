@@ -1,0 +1,46 @@
+===
+Add an axiom
+===
+
+axiom x : Nat
+
+---
+
+(source_file
+	(toplevel
+		(axiom)
+		(identifier)
+		(colon)
+		(nat)))
+
+
+===
+Add a more interesting axiom
+===
+
+axiom refl_finite : ∏ (A : Finite) (x : A), x = x
+
+---
+
+(source_file
+	(toplevel
+		(axiom)
+		(identifier)
+		(colon)
+		(dependent_function
+			(prod)
+			(lparen)
+			(identifier)
+			(colon)
+			(finite)
+			(rparen)
+			(lparen)
+			(identifier)
+			(colon)
+			(identifier)
+			(rparen)
+			(comma)
+			(identifier)
+			(equal)
+			(identifier))))
+	

@@ -1,0 +1,12 @@
+===
+Compile the natural numbers
+===
+
+compile Nat
+
+---
+
+(source_file
+	(toplevel
+		(compile)
+		(nat)))

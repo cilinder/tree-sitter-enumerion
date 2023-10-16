@@ -1,0 +1,39 @@
+=====
+Load a file
+===
+
+load "test.enum"
+
+---
+
+(source_file
+	(toplevel
+		(load)
+		(quoted_string)))
+
+
+===
+Load a file nested in a file structure
+===
+
+load "example/example1/some_other_folder/file.enum"
+
+---
+
+(source_file
+	(toplevel
+		(load)
+		(quoted_string)))
+
+===
+Load a file with internal quotations
+===
+
+load "'folder1/folder2/a folder/some file.enum'"
+
+---
+
+(source_file
+	(toplevel
+		(load)
+		(quoted_string)))

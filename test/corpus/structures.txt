@@ -128,9 +128,10 @@ check { x := 5 }
   (toplevel
     (check)
     (lbrace)
-    (identifier)
-    (coloneq)
-    (numeral)
+    (record_field
+      (identifier)
+      (coloneq)
+      (numeral))
     (rbrace)))
 
 ================================================================================
@@ -145,13 +146,15 @@ check { x := 5; y := 2 } : structure { x : Nat; y : Fin x; }
   (toplevel
     (check)
     (lbrace)
-    (identifier)
-    (coloneq)
-    (numeral)
+    (record_field
+      (identifier)
+      (coloneq)
+      (numeral))
     (semicolon)
-    (identifier)
-    (coloneq)
-    (numeral)
+    (record_field
+      (identifier)
+      (coloneq)
+      (numeral))
     (rbrace)
     (colon)
     (structure_expr

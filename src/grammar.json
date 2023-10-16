@@ -388,7 +388,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_variant_expr"
+          "name": "variant_expr"
         },
         {
           "type": "SYMBOL",
@@ -1117,14 +1117,14 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_record_field"
+          "name": "record_field"
         },
         {
           "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_record_field"
+              "name": "record_field"
             },
             {
               "type": "SYMBOL",
@@ -1137,7 +1137,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_record_field"
+              "name": "record_field"
             },
             {
               "type": "SYMBOL",
@@ -1151,7 +1151,7 @@
         }
       ]
     },
-    "_variant_expr": {
+    "variant_expr": {
       "type": "CHOICE",
       "members": [
         {
@@ -1199,14 +1199,14 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_variant_field"
+          "name": "variant_field"
         },
         {
           "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_variant_field"
+              "name": "variant_field"
             },
             {
               "type": "SYMBOL",
@@ -1220,7 +1220,7 @@
         }
       ]
     },
-    "_variant_field": {
+    "variant_field": {
       "type": "CHOICE",
       "members": [
         {
@@ -1246,7 +1246,7 @@
         }
       ]
     },
-    "_record_field": {
+    "record_field": {
       "type": "SEQ",
       "members": [
         {
@@ -1581,15 +1581,11 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9]*)"
+      "value": "(_[a-zA-Z0-9][a-zA-Z0-9_]*)|([a-zA-Z][a-zA-Z0-9_]*)"
     },
     "numeral": {
       "type": "PATTERN",
       "value": "(\\d+)"
-    },
-    "quoted_string": {
-      "type": "PATTERN",
-      "value": "\"[^\"]\""
     },
     "tag": {
       "type": "SEQ",
@@ -1599,10 +1595,17 @@
           "name": "backtick"
         },
         {
-          "type": "PATTERN",
-          "value": "([a-zA-Z][a-zA-Z0-9_]*)"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "([a-zA-Z][a-zA-Z0-9_]*)"
+          }
         }
       ]
+    },
+    "quoted_string": {
+      "type": "PATTERN",
+      "value": "\"[^\"]*\""
     }
   },
   "extras": [

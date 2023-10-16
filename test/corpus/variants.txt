@@ -1,0 +1,61 @@
+===
+Check a tag
+===
+
+check `foo
+
+---
+
+(source_file
+	(toplevel
+		(check)
+		(tag (backtick))))
+
+===
+Define a variant
+===
+
+def V := variant { `foo : Nat }
+
+---
+
+(source_file
+	(toplevel
+		(definition)
+		(identifier)
+		(coloneq)
+		(variant_expr
+			(variant)
+			(lbrace)
+			(variant_field
+				(tag (backtick))
+				(colon)
+				(nat))
+			(rbrace))))
+
+
+===
+Define a variant with multiple fields
+===
+
+def V := variant { `foo | `moo : Fin 3 }
+
+---
+
+(source_file
+	(toplevel
+		(definition)
+		(identifier)
+		(coloneq)
+		(variant_expr
+			(variant)
+			(lbrace)
+			(variant_field
+				(tag (backtick)))
+			(vbar)
+			(variant_field
+				(tag (backtick))
+				(colon)
+				(fin)
+				(numeral))
+			(rbrace))))

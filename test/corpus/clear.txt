@@ -1,0 +1,11 @@
+===
+Clear the context
+===
+
+clear
+
+---
+
+(source_file
+	(toplevel
+		(clear)))
