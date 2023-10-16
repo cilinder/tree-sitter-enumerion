@@ -66,7 +66,7 @@ module.exports = grammar({
 	_simple_expr: $ => choice(
 	    seq($.lparen, $._expr, $.rparen),
 	    seq($.begin, $._expr, $.end),
-	    $._structure_expr,
+	    $.structure_expr,
 	    $._variant_expr,
 	    $._record_expr,
 	    $.numeral,
@@ -184,7 +184,7 @@ module.exports = grammar({
 	    seq($.tag, $.lparen, $.identifier, $.colon, $._expr, $.rparen),
 	),
 
-	_structure_expr: $ => choice(
+	structure_expr: $ => choice(
 	    seq($.structure, $.lbrace, $.rbrace),
 	    seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
 	),

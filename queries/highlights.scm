@@ -5,3 +5,11 @@
 (enum) @type.builtin
 (numeral) @number
 (comment) @comment
+(fun) @keyword
+(plus) @operator
+(true_const) @constant
+(darrow) @delimiter
+(comma) @delimiter
+(lparen) @bracket
+(rparen) @bracket
+(colon) @delimiter

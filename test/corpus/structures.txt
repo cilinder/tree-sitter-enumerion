@@ -1,198 +1,201 @@
-===
+================================================================================
 Empty structure
-===
+================================================================================
 
 check structure {}
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (rbrace))))
 
-
-====
+================================================================================
 Structure with a single field
-===
+================================================================================
 
 check structure { x : Nat }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(nat)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (nat)
+      (rbrace))))
 
-
-===
+================================================================================
 Structure with two fields
-===
+================================================================================
 
 check structure { x : Nat; y : Fin x }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(nat)
-		(semicolon)
-		(identifier)
-		(colon)
-		(fin)
-		(identifier)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (nat)
+      (semicolon)
+      (identifier)
+      (colon)
+      (fin)
+      (identifier)
+      (rbrace))))
 
-===
+================================================================================
 Structure with a single field ending with semicolon
-===
+================================================================================
 
 check structure { x : Nat; }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(nat)
-		(semicolon)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (nat)
+      (semicolon)
+      (rbrace))))
 
-
-===
+================================================================================
 Multiline structure
-===
+================================================================================
 
 check structure {
       x : Fin 3 -> Fin 3;
       y : Nat;
 }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(simple_function
-			(fin)
-			(numeral)
-			(arrow)
-			(fin)
-			(numeral))
-		(semicolon)
-		(identifier)
-		(colon)
-		(nat)
-		(semicolon)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (simple_function
+        (fin)
+        (numeral)
+        (arrow)
+        (fin)
+        (numeral))
+      (semicolon)
+      (identifier)
+      (colon)
+      (nat)
+      (semicolon)
+      (rbrace))))
 
-===
+================================================================================
 Record
-===
+================================================================================
 
 
 check { x := 5 }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(lbrace)
-		(identifier)
-		(coloneq)
-		(numeral)
-		(rbrace)))
+  (toplevel
+    (check)
+    (lbrace)
+    (identifier)
+    (coloneq)
+    (numeral)
+    (rbrace)))
 
-
-===
+================================================================================
 Record with multiple fields
-===
+================================================================================
 
 check { x := 5; y := 2 } : structure { x : Nat; y : Fin x; }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(lbrace)
-		(identifier)
-		(coloneq)
-		(numeral)
-		(semicolon)
-		(identifier)
-		(coloneq)
-		(numeral)
-		(rbrace)
-		(colon)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(nat)
-		(semicolon)
-		(identifier)
-		(colon)
-		(fin)
-		(identifier)
-		(semicolon)
-		(rbrace)))
+  (toplevel
+    (check)
+    (lbrace)
+    (identifier)
+    (coloneq)
+    (numeral)
+    (semicolon)
+    (identifier)
+    (coloneq)
+    (numeral)
+    (rbrace)
+    (colon)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (nat)
+      (semicolon)
+      (identifier)
+      (colon)
+      (fin)
+      (identifier)
+      (semicolon)
+      (rbrace))))
 
-
-===
+================================================================================
 Nested structure
-===
+================================================================================
 
 check structure {
       x : Nat;
       S : structure { y : Fin x; z : Nat };
 }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(nat)
-		(semicolon)
-		(identifier)
-		(colon)
-		(structure)
-		(lbrace)
-		(identifier)
-		(colon)
-		(fin)
-		(identifier)
-		(semicolon)
-		(identifier)
-		(colon)
-		(nat)
-		(rbrace)
-		(semicolon)
-		(rbrace)))
+  (toplevel
+    (check)
+    (structure_expr
+      (structure)
+      (lbrace)
+      (identifier)
+      (colon)
+      (nat)
+      (semicolon)
+      (identifier)
+      (colon)
+      (structure_expr
+        (structure)
+        (lbrace)
+        (identifier)
+        (colon)
+        (fin)
+        (identifier)
+        (semicolon)
+        (identifier)
+        (colon)
+        (nat)
+        (rbrace))
+      (semicolon)
+      (rbrace))))

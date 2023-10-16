@@ -384,7 +384,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_structure_expr"
+          "name": "structure_expr"
         },
         {
           "type": "SYMBOL",
@@ -952,7 +952,7 @@
         }
       ]
     },
-    "_structure_expr": {
+    "structure_expr": {
       "type": "CHOICE",
       "members": [
         {
