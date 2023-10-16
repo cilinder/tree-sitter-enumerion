@@ -28,9 +28,10 @@ check structure { x : Nat }
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (rbrace))))
 
 ================================================================================
@@ -47,14 +48,16 @@ check structure { x : Nat; y : Fin x }
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (semicolon)
-      (identifier)
-      (colon)
-      (fin)
-      (identifier)
+      (structure_field
+        (identifier)
+        (colon)
+        (fin)
+        (identifier))
       (rbrace))))
 
 ================================================================================
@@ -71,9 +74,10 @@ check structure { x : Nat; }
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (semicolon)
       (rbrace))))
 
@@ -94,18 +98,20 @@ check structure {
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (simple_function
-        (fin)
-        (numeral)
-        (arrow)
-        (fin)
-        (numeral))
+      (structure_field
+        (identifier)
+        (colon)
+        (simple_function
+          (fin)
+          (numeral)
+          (arrow)
+          (fin)
+          (numeral)))
       (semicolon)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (semicolon)
       (rbrace))))
 
@@ -151,14 +157,16 @@ check { x := 5; y := 2 } : structure { x : Nat; y : Fin x; }
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (semicolon)
-      (identifier)
-      (colon)
-      (fin)
-      (identifier)
+      (structure_field
+        (identifier)
+        (colon)
+        (fin)
+        (identifier))
       (semicolon)
       (rbrace))))
 
@@ -168,7 +176,7 @@ Nested structure
 
 check structure {
       x : Nat;
-      S : structure { y : Fin x; z : Nat };
+      S : structure { y : Fin x };
 }
 
 --------------------------------------------------------------------------------
@@ -179,23 +187,22 @@ check structure {
     (structure_expr
       (structure)
       (lbrace)
-      (identifier)
-      (colon)
-      (nat)
+      (structure_field
+        (identifier)
+        (colon)
+        (nat))
       (semicolon)
-      (identifier)
-      (colon)
-      (structure_expr
-        (structure)
-        (lbrace)
+      (structure_field
         (identifier)
         (colon)
-        (fin)
-        (identifier)
-        (semicolon)
-        (identifier)
-        (colon)
-        (nat)
-        (rbrace))
+        (structure_expr
+          (structure)
+          (lbrace)
+          (structure_field
+            (identifier)
+            (colon)
+            (fin)
+            (identifier))
+          (rbrace)))
       (semicolon)
       (rbrace))))

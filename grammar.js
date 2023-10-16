@@ -190,12 +190,12 @@ module.exports = grammar({
 	),
 
 	_structure_fields: $ => choice(
-	    $._structure_field,
-	    seq($._structure_field, $.semicolon),
-	    seq($._structure_field, $.semicolon, $._structure_fields),
+	    $.structure_field,
+	    seq($.structure_field, $.semicolon),
+	    seq($.structure_field, $.semicolon, $._structure_fields),
 	),
 
-	_structure_field: $ => choice(
+	structure_field: $ => choice(
 	    seq($.identifier, $.colon, $._expr),
 	    seq($.axiom, $.identifier, $.colon, $._expr),
 	),

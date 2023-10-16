@@ -1000,14 +1000,14 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_structure_field"
+          "name": "structure_field"
         },
         {
           "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_structure_field"
+              "name": "structure_field"
             },
             {
               "type": "SYMBOL",
@@ -1020,7 +1020,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_structure_field"
+              "name": "structure_field"
             },
             {
               "type": "SYMBOL",
@@ -1034,7 +1034,7 @@
         }
       ]
     },
-    "_structure_field": {
+    "structure_field": {
       "type": "CHOICE",
       "members": [
         {
