@@ -2584,14 +2584,6 @@
     "named": false
   },
   {
-    "type": "Nat",
-    "named": false
-  },
-  {
-    "type": "Prop",
-    "named": false
-  },
-  {
     "type": "arrow",
     "named": true
   },

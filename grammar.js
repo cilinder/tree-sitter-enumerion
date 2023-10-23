@@ -238,13 +238,13 @@ module.exports = grammar({
 
 	clear: $ => prec(2, 'clear'),
 	
-	prop: $ => prec(2, 'Prop'),
+	prop: $ => prec(2, /(Prop)|\u1D539/),
 
 	finite: $ => prec(2, 'Finite'),
 
 	enum: $ => prec(2, 'Enum'),
 
-	nat: $ => prec(2, 'Nat'),
+	nat: $ => prec(2, /(Nat)|(\u2115)/),
 
 	fin: $ => prec(2, 'Fin'),
 

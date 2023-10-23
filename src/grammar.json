@@ -1310,8 +1310,8 @@
       "type": "PREC",
       "value": 2,
       "content": {
-        "type": "STRING",
-        "value": "Prop"
+        "type": "PATTERN",
+        "value": "(Prop)|\\u1D539"
       }
     },
     "finite": {
@@ -1334,8 +1334,8 @@
       "type": "PREC",
       "value": 2,
       "content": {
-        "type": "STRING",
-        "value": "Nat"
+        "type": "PATTERN",
+        "value": "(Nat)|(\\u2115)"
       }
     },
     "fin": {
