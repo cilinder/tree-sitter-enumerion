@@ -1,97 +1,193 @@
-===
+================================================================================
 Check a tag
-===
+================================================================================
 
 check `foo
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(check)
-		(tag (backtick))))
+  (toplevel
+    (check)
+    (tag
+      (backtick))))
 
-===
+================================================================================
 Define a variant
-===
+================================================================================
 
 def V := variant { `foo : Nat }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(definition)
-		(identifier)
-		(coloneq)
-		(variant_expr
-			(variant)
-			(lbrace)
-			(variant_field
-				(tag (backtick))
-				(colon)
-				(nat))
-			(rbrace))))
+  (toplevel
+    (definition)
+    (identifier)
+    (coloneq)
+    (variant_expr
+      (variant)
+      (lbrace)
+      (variant_field
+        (tag
+          (backtick))
+        (colon)
+        (nat))
+      (rbrace))))
 
-
-===
+================================================================================
 Define a variant with multiple fields
-===
+================================================================================
 
 def V := variant { `foo | `moo : Fin 3 }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(definition)
-		(identifier)
-		(coloneq)
-		(variant_expr
-			(variant)
-			(lbrace)
-			(variant_field
-				(tag (backtick)))
-			(vbar)
-			(variant_field
-				(tag (backtick))
-				(colon)
-				(fin)
-				(numeral))
-			(rbrace))))
+  (toplevel
+    (definition)
+    (identifier)
+    (coloneq)
+    (variant_expr
+      (variant)
+      (lbrace)
+      (variant_field
+        (tag
+          (backtick)))
+      (vbar)
+      (variant_field
+        (tag
+          (backtick))
+        (colon)
+        (fin)
+        (numeral))
+      (rbrace))))
 
-
-===
+================================================================================
 Match statement
-===
+================================================================================
 
 eval match `foo with
      | `foo => 0
      | `moo (x : Nat) => x
      end
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-	(toplevel
-		(eval)
-		(match_expr
-			(match)
-			(tag (backtick))
-			(with_keyword)
-			(match_case
-				(vbar)
-				(tag (backtick))
-				(darrow)
-				(numeral))
-			(match_case
-				(vbar)
-				(tag (backtick))
-				(lparen)
-				(identifier)
-				(colon)
-				(nat)
-				(rparen)
-				(darrow)
-				(identifier))
-			(end))))
+  (toplevel
+    (eval)
+    (match_expr
+      (match)
+      (tag
+        (backtick))
+      (with_keyword)
+      (match_case
+        (vbar)
+        (tag
+          (backtick))
+        (darrow)
+        (numeral))
+      (match_case
+        (vbar)
+        (tag
+          (backtick))
+        (lparen)
+        (identifier)
+        (colon)
+        (nat)
+        (rparen)
+        (darrow)
+        (identifier))
+      (end))))
+
+================================================================================
+A function mapping to a variant
+================================================================================
+
+check (fun (s : structure { x : Nat; y : Nat }) =>
+      `foo { z := x + y }) :
+      structure { x : Nat; y : Nat } -> variant { `foo : structure { z : Nat } | `moo : Fin 3 → Fin 7 }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (lparen)
+    (lambda_expr
+      (fun)
+      (lambda_abstraction
+        (lparen)
+        (identifier)
+        (colon)
+        (structure_expr
+          (structure)
+          (lbrace)
+          (structure_field
+            (identifier)
+            (colon)
+            (nat))
+          (semicolon)
+          (structure_field
+            (identifier)
+            (colon)
+            (nat))
+          (rbrace))
+        (rparen))
+      (darrow)
+      (app
+        (tag
+          (backtick))
+        (lbrace)
+        (record_field
+          (identifier)
+          (coloneq)
+          (identifier)
+          (plus)
+          (identifier))
+        (rbrace)))
+    (rparen)
+    (colon)
+    (simple_function
+      (structure_expr
+        (structure)
+        (lbrace)
+        (structure_field
+          (identifier)
+          (colon)
+          (nat))
+        (semicolon)
+        (structure_field
+          (identifier)
+          (colon)
+          (nat))
+        (rbrace))
+      (arrow)
+      (variant_expr
+        (variant)
+        (lbrace)
+        (variant_field
+          (tag
+            (backtick))
+          (colon)
+          (structure_expr
+            (structure)
+            (lbrace)
+            (structure_field
+              (identifier)
+              (colon)
+              (nat))
+            (rbrace)))
+        (vbar)
+        (variant_field
+          (tag
+            (backtick))
+          (colon)
+          (simple_function
+            (fin)
+            (numeral)
+            (arrow)
+            (fin)
+            (numeral)))
+        (rbrace)))))

@@ -19,6 +19,7 @@ module.exports = grammar({
 	_expr: $ => choice(
             $._infix_expr,
 	    $.lambda_expr,
+	    $.lookup_table_expr,
 	    $.dependent_function,
             $.simple_function,
 	    $.exists_expr,
@@ -84,9 +85,26 @@ module.exports = grammar({
 
 	lambda_expr: $ => seq(
 	    $.fun,
-	    $._lambda_abstraction,
+	    field('parameters', $.lambda_abstraction),
 	    $.darrow,
 	    $._expr,
+	),
+
+	lookup_table_expr: $ => seq(
+	    $.fun,
+	    $._lookup_fields
+	),
+
+	_lookup_fields: $ => choice(
+	    seq($.lookup_field, $.end),
+	    seq($.lookup_field, $._lookup_fields),
+	),
+
+	lookup_field: $ => seq(
+	    $.vbar,
+	    $._simple_expr,
+	    $.darrow,
+	    $._expr
 	),
 
 	dependent_function: $ => seq(
@@ -150,8 +168,8 @@ module.exports = grammar({
 
 	_pow_expr: $ => prec.right(seq($._infix_expr, $.pow, $._infix_expr)),
 
-	_lambda_abstraction: $ => choice(
-	    repeat1($.identifier),
+	lambda_abstraction: $ => choice(
+	    repeat1(field('name', $.identifier)),
 	    repeat1($._typed_binder)
 	),
 
@@ -162,7 +180,7 @@ module.exports = grammar({
 
 	_typed_binder: $ => seq(
 	    $.lparen,
-	    repeat1($.identifier),
+	    repeat1(field('name', $.identifier)),
 	    $.colon,
 	    $._expr,
 	    $.rparen

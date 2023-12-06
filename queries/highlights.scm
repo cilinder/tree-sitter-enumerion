@@ -13,3 +13,10 @@
 (lparen) @bracket
 (rparen) @bracket
 (colon) @delimiter
+(structure) @keyword
+(variant) @keyword
+
+(lambda_abstraction name: (identifier) @variable.parameter)
+
+((identifier) @function.method
+ (#is-not? local))

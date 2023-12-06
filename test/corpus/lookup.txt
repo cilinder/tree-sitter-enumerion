@@ -1,0 +1,188 @@
+================================================================================
+Check a simple lookup table
+================================================================================
+
+check (fun | 0 => 0 end) : Fin 1 -> Fin 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (lparen)
+    (lookup_table_expr
+      (fun)
+      (lookup_field
+        (vbar)
+        (numeral)
+        (darrow)
+        (numeral))
+      (end))
+    (rparen)
+    (colon)
+    (simple_function
+      (fin)
+      (numeral)
+      (arrow)
+      (fin)
+      (numeral))))
+
+================================================================================
+Check a lookup table with multiple fields
+================================================================================
+
+check (fun
+      | 0 => 3
+      | 1 => n+1
+      | 2 => 1
+      end) : Fin 3 -> Nat
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (lparen)
+    (lookup_table_expr
+      (fun)
+      (lookup_field
+        (vbar)
+        (numeral)
+        (darrow)
+        (numeral))
+      (lookup_field
+        (vbar)
+        (numeral)
+        (darrow)
+        (identifier)
+        (plus)
+        (numeral))
+      (lookup_field
+        (vbar)
+        (numeral)
+        (darrow)
+        (numeral))
+      (end))
+    (rparen)
+    (colon)
+    (simple_function
+      (fin)
+      (numeral)
+      (arrow)
+      (nat))))
+
+================================================================================
+Check a more complicated lookup table
+================================================================================
+
+
+check (fun
+      | { x := 5; y := 3 } => `bog { z := 10 }
+      | { x := 1; y := 5 } => `log { z := 11 }
+      | { y := 4; x := 3 } => `frog { a := 1 }
+      end) : Point -> variant { `bog : Z | `log : Z | `frog : A }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (lparen)
+    (lookup_table_expr
+      (fun)
+      (lookup_field
+        (vbar)
+        (lbrace)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (semicolon)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (rbrace)
+        (darrow)
+        (app
+          (tag
+            (backtick))
+          (lbrace)
+          (record_field
+            (identifier)
+            (coloneq)
+            (numeral))
+          (rbrace)))
+      (lookup_field
+        (vbar)
+        (lbrace)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (semicolon)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (rbrace)
+        (darrow)
+        (app
+          (tag
+            (backtick))
+          (lbrace)
+          (record_field
+            (identifier)
+            (coloneq)
+            (numeral))
+          (rbrace)))
+      (lookup_field
+        (vbar)
+        (lbrace)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (semicolon)
+        (record_field
+          (identifier)
+          (coloneq)
+          (numeral))
+        (rbrace)
+        (darrow)
+        (app
+          (tag
+            (backtick))
+          (lbrace)
+          (record_field
+            (identifier)
+            (coloneq)
+            (numeral))
+          (rbrace)))
+      (end))
+    (rparen)
+    (colon)
+    (simple_function
+      (identifier)
+      (arrow)
+      (variant_expr
+        (variant)
+        (lbrace)
+        (variant_field
+          (tag
+            (backtick))
+          (colon)
+          (identifier))
+        (vbar)
+        (variant_field
+          (tag
+            (backtick))
+          (colon)
+          (identifier))
+        (vbar)
+        (variant_field
+          (tag
+            (backtick))
+          (colon)
+          (identifier))
+        (rbrace)))))

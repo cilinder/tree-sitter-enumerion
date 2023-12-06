@@ -81,7 +81,8 @@ check fun x => 3
     (check)
     (lambda_expr
       (fun)
-      (identifier)
+      (lambda_abstraction
+        (identifier))
       (darrow)
       (numeral))))
 
@@ -98,11 +99,12 @@ check fun (x : Nat) => x
     (check)
     (lambda_expr
       (fun)
-      (lparen)
-      (identifier)
-      (colon)
-      (nat)
-      (rparen)
+      (lambda_abstraction
+        (lparen)
+        (identifier)
+        (colon)
+        (nat)
+        (rparen))
       (darrow)
       (identifier))))
 
@@ -119,9 +121,10 @@ check fun x y z => x
     (check)
     (lambda_expr
       (fun)
-      (identifier)
-      (identifier)
-      (identifier)
+      (lambda_abstraction
+        (identifier)
+        (identifier)
+        (identifier))
       (darrow)
       (identifier))))
 
@@ -138,17 +141,18 @@ check fun (x : Nat) (y : Fin 3) => 3
     (check)
     (lambda_expr
       (fun)
-      (lparen)
-      (identifier)
-      (colon)
-      (nat)
-      (rparen)
-      (lparen)
-      (identifier)
-      (colon)
-      (fin)
-      (numeral)
-      (rparen)
+      (lambda_abstraction
+        (lparen)
+        (identifier)
+        (colon)
+        (nat)
+        (rparen)
+        (lparen)
+        (identifier)
+        (colon)
+        (fin)
+        (numeral)
+        (rparen))
       (darrow)
       (numeral))))
 
@@ -165,12 +169,13 @@ check λ (x : Fin 3) => 3
     (check)
     (lambda_expr
       (fun)
-      (lparen)
-      (identifier)
-      (colon)
-      (fin)
-      (numeral)
-      (rparen)
+      (lambda_abstraction
+        (lparen)
+        (identifier)
+        (colon)
+        (fin)
+        (numeral)
+        (rparen))
       (darrow)
       (numeral))))
 
@@ -187,7 +192,8 @@ check fun x ⇒ 1
     (check)
     (lambda_expr
       (fun)
-      (identifier)
+      (lambda_abstraction
+        (identifier))
       (darrow)
       (numeral))))
 
@@ -353,12 +359,13 @@ check (λ (x y : Nat) => x * y - 1) 5
       (lparen)
       (lambda_expr
         (fun)
-        (lparen)
-        (identifier)
-        (identifier)
-        (colon)
-        (nat)
-        (rparen)
+        (lambda_abstraction
+          (lparen)
+          (identifier)
+          (identifier)
+          (colon)
+          (nat)
+          (rparen))
         (darrow)
         (identifier)
         (times)

@@ -142,6 +142,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "lookup_table_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dependent_function"
         },
         {
@@ -453,8 +457,77 @@
           "name": "fun"
         },
         {
+          "type": "FIELD",
+          "name": "parameters",
+          "content": {
+            "type": "SYMBOL",
+            "name": "lambda_abstraction"
+          }
+        },
+        {
           "type": "SYMBOL",
-          "name": "_lambda_abstraction"
+          "name": "darrow"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expr"
+        }
+      ]
+    },
+    "lookup_table_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "fun"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_lookup_fields"
+        }
+      ]
+    },
+    "_lookup_fields": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "lookup_field"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "end"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "lookup_field"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_lookup_fields"
+            }
+          ]
+        }
+      ]
+    },
+    "lookup_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "vbar"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_simple_expr"
         },
         {
           "type": "SYMBOL",
@@ -802,14 +875,18 @@
         ]
       }
     },
-    "_lambda_abstraction": {
+    "lambda_abstraction": {
       "type": "CHOICE",
       "members": [
         {
           "type": "REPEAT1",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
           }
         },
         {
@@ -863,8 +940,12 @@
         {
           "type": "REPEAT1",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
           }
         },
         {
