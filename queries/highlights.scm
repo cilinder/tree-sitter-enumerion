@@ -15,6 +15,7 @@
 (colon) @delimiter
 (structure) @keyword
 (variant) @keyword
+(end) @keyword
 
 (lambda_abstraction name: (identifier) @variable.parameter)
 
