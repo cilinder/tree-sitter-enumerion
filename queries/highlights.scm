@@ -3,6 +3,7 @@
 (nat) @type.builtin
 (finite) @type.builtin
 (enum) @type.builtin
+(prop) @type.builtin
 (numeral) @number
 (comment) @comment
 (fun) @keyword
