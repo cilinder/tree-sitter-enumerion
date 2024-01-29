@@ -10,7 +10,7 @@ module.exports = grammar({
 	    seq($.load, $.quoted_string),
 	    seq($.definition, $.identifier, $.coloneq, $._expr),
 	    seq($.check, $._expr),
-	    seq($.compile, $._expr),
+	    seq($.enumerate, $._expr),
 	    seq($.eval, $._expr),
 	    seq($.axiom, $.identifier, $.colon, $._expr),
 	    seq($.clear),
@@ -49,8 +49,6 @@ module.exports = grammar({
 	    seq($.neg, $._prefix_expr),
 	    seq($.size, $._prefix_expr),
 	    seq($.fin, $._prefix_expr),
-	    seq($.stream, $._prefix_expr),
-	    seq($.enumerate, $._prefix_expr),
 	    $.app,
 	),
 
@@ -67,12 +65,14 @@ module.exports = grammar({
 	_simple_expr: $ => choice(
 	    seq($.lparen, $._expr, $.rparen),
 	    seq($.begin, $._expr, $.end),
+	    $.theory_expr,
 	    $.structure_expr,
 	    $.variant_expr,
 	    $._record_expr,
 	    $.numeral,
 	    $.identifier,
 	    $.tag,
+	    $.theory_type,
 	    $.enum,
 	    $.finite,
 	    $.prop,
@@ -200,6 +200,22 @@ module.exports = grammar({
 	    seq($.tag, $.lparen, $.identifier, $.colon, $._expr, $.rparen),
 	),
 
+	theory_expr: $ => choice(
+	    seq($.theory, $.lbrace, $.rbrace),
+	    seq($.theory, $.lbrace, $._theory_fields, $.rbrace),
+	),
+
+	_theory_fields: $ => choice(
+	    $.theory_field,
+	    seq($.theory_field, $.semicolon),
+	    seq($.theory_field, $.semicolon, $._theory_fields),
+	),
+
+	theory_field: $ => choice(
+	    seq($.identifier, $.colon, $._expr),
+	    seq($.axiom, $.identifier, $.colon, $._expr),
+	),
+	
 	structure_expr: $ => choice(
 	    seq($.structure, $.lbrace, $.rbrace),
 	    seq($.structure, $.lbrace, $._structure_fields, $.rbrace),
@@ -260,6 +276,8 @@ module.exports = grammar({
 
 	finite: $ => prec(2, 'Finite'),
 
+	theory_type: $ => prec(2, 'Theory'),
+
 	enum: $ => prec(2, 'Enum'),
 
 	nat: $ => prec(2, /(Nat)|(\u2115)/),
@@ -267,8 +285,6 @@ module.exports = grammar({
 	fin: $ => prec(2, 'Fin'),
 
 	size: $ => prec(2, 'size'),
-
-	stream: $ => prec(2, 'stream'),
 
 	enumerate: $ => prec(2, 'enumerate'),
 
@@ -279,6 +295,8 @@ module.exports = grammar({
 	begin: $ => prec(2, 'begin'),
 
 	end: $ => prec(2, 'end'),
+
+	theory: $ => prec(2, 'theory'),
 
 	structure: $ => prec(2, 'structure'),
 

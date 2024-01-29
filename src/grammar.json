@@ -76,7 +76,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "compile"
+              "name": "enumerate"
             },
             {
               "type": "SYMBOL",
@@ -283,32 +283,6 @@
           ]
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "stream"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_prefix_expr"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "enumerate"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_prefix_expr"
-            }
-          ]
-        },
-        {
           "type": "SYMBOL",
           "name": "app"
         }
@@ -388,6 +362,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "theory_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "structure_expr"
         },
         {
@@ -409,6 +387,10 @@
         {
           "type": "SYMBOL",
           "name": "tag"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "theory_type"
         },
         {
           "type": "SYMBOL",
@@ -1028,6 +1010,131 @@
         }
       ]
     },
+    "theory_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "theory"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "lbrace"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "rbrace"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "theory"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "lbrace"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_theory_fields"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "rbrace"
+            }
+          ]
+        }
+      ]
+    },
+    "_theory_fields": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "theory_field"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "theory_field"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "semicolon"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "theory_field"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "semicolon"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_theory_fields"
+            }
+          ]
+        }
+      ]
+    },
+    "theory_field": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "colon"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_expr"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "axiom"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "colon"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_expr"
+            }
+          ]
+        }
+      ]
+    },
     "structure_expr": {
       "type": "CHOICE",
       "members": [
@@ -1403,6 +1510,14 @@
         "value": "Finite"
       }
     },
+    "theory_type": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "STRING",
+        "value": "Theory"
+      }
+    },
     "enum": {
       "type": "PREC",
       "value": 2,
@@ -1433,14 +1548,6 @@
       "content": {
         "type": "STRING",
         "value": "size"
-      }
-    },
-    "stream": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "STRING",
-        "value": "stream"
       }
     },
     "enumerate": {
@@ -1481,6 +1588,14 @@
       "content": {
         "type": "STRING",
         "value": "end"
+      }
+    },
+    "theory": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "STRING",
+        "value": "theory"
       }
     },
     "structure": {

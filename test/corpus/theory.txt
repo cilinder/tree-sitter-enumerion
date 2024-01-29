@@ -1,0 +1,61 @@
+================================================================================
+Check a theory
+================================================================================
+
+check theory { x : Nat }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (theory_expr
+      (theory)
+      (lbrace)
+      (theory_field
+        (identifier)
+        (colon)
+        (nat))
+      (rbrace))))
+
+================================================================================
+Check a more complicated theory
+================================================================================
+
+check theory { x : Fin 10; y : structure { z : Fin x; w : Fin z + x } }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (toplevel
+    (check)
+    (theory_expr
+      (theory)
+      (lbrace)
+      (theory_field
+        (identifier)
+        (colon)
+        (fin)
+        (numeral))
+      (semicolon)
+      (theory_field
+        (identifier)
+        (colon)
+        (structure_expr
+          (structure)
+          (lbrace)
+          (structure_field
+            (identifier)
+            (colon)
+            (fin)
+            (identifier))
+          (semicolon)
+          (structure_field
+            (identifier)
+            (colon)
+            (fin)
+            (identifier)
+            (plus)
+            (identifier))
+          (rbrace)))
+      (rbrace))))
